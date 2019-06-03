@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        li {
+            list-style: none;
+        }
+        ul {
+            border: 1px solid #000;
+            width: 150px;
+            height: 300px;
+            display: inline-block;
+            vertical-align: top;
+        }
+        button {
+            margin-top: 50px
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in arr1">
+                <input type="checkbox" v-model="item.checked">
+                {{item.name}}
+            </li>
+        </ul>
+        <button @click="left"><</button>
+        <button @click="right">></button>
+        <ul>
+            <li v-for="item in arr2">
+                <input type="checkbox" v-model="item.checked">
+                {{item.name}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                arr1: [
+                    {
+                    name: '选项1',
+                    checked: false
+                    },
+                    {
+                    name: '选项2',
+                    checked: false
+                    },
+                    {
+                    name: '选项3',
+                    checked: false
+                    }, {
+                    name: '选项4',
+                    checked: false
+                    }
+                ],
+
+                arr2: [
+                    {
+                    name: '选项5',
+                    checked: false
+                    },
+                    {
+                    name: '选项6',
+                    checked: false
+                    },
+                    {
+                    name: '选项7',
+                    checked: false
+                    }, {
+                    name: '选项8',
+                    checked: false
+                    }
+                ]
+
+            },
+            methods: {
+                right() {
+                    const x = [];
+                    const y = [];
+                    this.arr1.forEach(item => {
+                        if(item.checked) {
+                            x.push(item);
+                        } else {
+                            y.push(item);
+                        }
+                    });
+                    this.arr1 = y;
+                    x.forEach(item => {
+                        item.checked = false;
+                        this.arr2.push(item);
+                    })
+
+                },
+                left(){
+                    const x = [];
+                    const y = [];
+                    this.arr2.forEach(item => {
+                        if(item.checked) {
+                            x.push(item);
+                        } else {
+                            y.push(item);
+                        }
+                    });
+                    this.arr2 = y;
+                    x.forEach(item => {
+                        item.checked = false;
+                        this.arr1.push(item);
+                    })
+
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .button {
+            width: 46px;
+            height: 18px;
+            display: block;
+            border-radius: 10px;
+            border: 1px solid #000;
+            position: relative;
+            background: gray;
+        }
+        .circle {
+            height: 18px;
+            width: 18px;
+            border-radius: 50%;
+            position: absolute;
+            background: red;
+            left: 0;
+        }
+        .on {
+            background: #02a774;
+            transition-duration: 1s;
+            left: 28px;
+        }
+        .off {
+            background: red;
+            transition-duration: 1s;
+            left: 0;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="button">
+            <div class="circle" @click="isShow=!isShow;click()" :class="isShow? 'on':'off'" ></div>
+            <span class="text"></span>
+        </div>
+        {{isShow}}
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                isShow: false
+            },
+            methods: {
+                click() {
+                    console.log(this.isShow);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

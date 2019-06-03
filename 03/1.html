@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in messageList">{{item}}</li>
+        </ul>
+        <input type="text" v-model="message"   @keyup.enter.ctrl="handle"  @keyup.esc="del"> 
+        <button @click="handle">提交</button>
+        <button @click="del">删除记录</button>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                messageList:[],
+                message:"",
+            },
+            methods: {
+                handle(){
+                    this.messageList.push(this.message);
+                    this.message="";
+                },
+                del(){
+                   this.messageList=[]; 
+                }
+            }
+        })
+    </script>
+    
+</body>
+</html>
